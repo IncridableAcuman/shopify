@@ -1,4 +1,4 @@
-package com.commerce.server.security.util;
+package com.commerce.server.domain.token.util;
 
 import com.commerce.server.domain.user.entity.UserEntity;
 import io.jsonwebtoken.Claims;

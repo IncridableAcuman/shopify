@@ -1,4 +1,4 @@
-package com.commerce.server.security.util;
+package com.commerce.server.domain.token.util;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;

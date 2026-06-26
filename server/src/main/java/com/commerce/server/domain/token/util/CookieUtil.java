@@ -1,8 +1,8 @@
 package com.commerce.server.domain.token.util;
 
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,14 +11,15 @@ public class CookieUtil {
     private int refreshTime;
 
     private void cookieManagement(String refreshToken,int expiration, HttpServletResponse response){
-        Cookie cookie = new Cookie("refreshToken",refreshToken);
-        cookie.setHttpOnly(true);
-        cookie.setValue(refreshToken);
-        cookie.setMaxAge(expiration);
-        cookie.setSecure(false);
-        cookie.setPath("/");
+        ResponseCookie cookie = ResponseCookie.from("refreshToken",refreshToken)
+                        .httpOnly(true)
+                                .maxAge(expiration)
+                                        .secure(false)
+                                                .sameSite("Lax")
+                                                        .path("/")
+                                                                .build();
 
-        response.addCookie(cookie);
+        response.addHeader("Set-Cookie",cookie.toString());
     }
     public void addCookie(String refreshToken,HttpServletResponse response){
         cookieManagement(refreshToken,refreshTime/1000,response);

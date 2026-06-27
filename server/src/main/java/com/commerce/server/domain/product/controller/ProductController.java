@@ -43,7 +43,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.deleteProductById(id));
     }
     @PatchMapping("/{id}")
-    public ResponseEntity<ProductResponse> editProduct(@PathVariable Long id @Valid ,@RequestBody ProductRequest request){
+    public ResponseEntity<ProductResponse> editProduct(@PathVariable Long id, @Valid @RequestBody ProductRequest request){
         return ResponseEntity.ok(productService.editProduct(id,request));
     }
 }
